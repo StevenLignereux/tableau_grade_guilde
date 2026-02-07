@@ -39,26 +39,38 @@ class GuildGradeApp {
             });
 
             try {
+                // Attendre un peu que le DOM se mette à jour
+                await new Promise(resolve => setTimeout(resolve, 500));
+
                 // Créer le canvas
                 const canvas = await html2canvas(container, {
                     backgroundColor: '#0F001A', // Couleur de fond du thème
-                    scale: 2 // Meilleure qualité
+                    scale: 2, // Meilleure qualité
+                    useCORS: true, // Important pour charger les images externes (Google Sheets / Icônes)
+                    logging: true // Pour le debug
                 });
 
                 // Créer le lien de téléchargement
                 const link = document.createElement('a');
                 link.download = 'preview-grades.png';
                 link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link); // Requis pour Firefox parfois
                 link.click();
+                document.body.removeChild(link);
 
-                alert("Image générée ! Sauvegardez-la dans 'assets/images/preview-grades.png' et commitez-la sur GitHub pour mettre à jour l'aperçu Discord.");
+                alert("Image générée ! Sauvegardez-la dans 'assets/images/preview-grades.png' et commitez-la sur GitHub.");
             } catch (err) {
                 console.error('Erreur lors de la génération de la preview:', err);
-                alert('Erreur lors de la génération de l\'image.');
+                alert('Erreur lors de la génération de l\'image: ' + err.message);
             } finally {
-                // Restaurer l'état (fermer les accordéons ou laisser comme avant)
-                // Ici on recharge simplement pour remettre propre
-                window.location.reload();
+                // Recharger la page pour remettre l'état initial
+                // window.location.reload(); 
+                // On peut juste refermer les cartes au lieu de reload violent
+                cards.forEach(card => {
+                    card.classList.remove('active');
+                    const details = card.querySelector('.grade-details');
+                    details.style.maxHeight = null;
+                });
             }
         });
     }
