@@ -19,8 +19,12 @@ class GradeUIRenderer {
             this.container.appendChild(card);
         });
 
-        // Initialiser les icônes Lucide
-        lucide.createIcons();
+        // Initialiser les icônes Lucide si disponible
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+        } else {
+            console.warn('Lucide icons not loaded');
+        }
     }
 
     createGradeCard(grade) {
