@@ -20,10 +20,12 @@ class GradeUIRenderer {
         });
 
         // Initialiser les icônes Lucide si disponible
-        if (typeof lucide !== 'undefined' && lucide.createIcons) {
-            lucide.createIcons();
-        } else {
-            console.warn('Lucide icons not loaded');
+        try {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        } catch (e) {
+            console.warn('Lucide icons error:', e);
         }
     }
 
