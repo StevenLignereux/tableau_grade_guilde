@@ -1,9 +1,12 @@
 class GradeDataManager {
     constructor() {
-        // ID de la Google Sheet (à remplacer par le vrai ID)
-        // Format: https://docs.google.com/spreadsheets/d/[ID]/edit#gid=0
-        this.sheetId = ''; 
-        this.googleSheetUrl = this.sheetId ? `https://docs.google.com/spreadsheets/d/${this.sheetId}/export?format=csv` : null;
+        // ID de la Google Sheet (à remplacer par le vôtre)
+        // Format attendu: 2PACX-... (c'est l'ID long qu'on obtient en publiant sur le web)
+        this.sheetId = '2PACX-1vQca1-Uv_iOvJCWreJmwC_CJy9KcnVnvnsyRzjV5g4pcDi9ZwVgLa9JR5TZ_iKxTrVSKaLH8aGoyaZW'; 
+        
+        // URL complète pour l'export CSV
+        this.googleSheetUrl = `https://docs.google.com/spreadsheets/d/e/${this.sheetId}/pub?output=csv`;
+        
         this.fallbackData = 'data/grades.json';
     }
 
@@ -37,13 +40,18 @@ class GradeDataManager {
 
     parseCSV(csvText) {
         const lines = csvText.split('\n');
-        const headers = this.parseCSVLine(lines[0]);
+        // Nettoyer et normaliser les en-têtes (minuscules, sans espaces)
+        const headers = this.parseCSVLine(lines[0]).map(h => h.trim().toLowerCase());
         
         return lines.slice(1)
             .filter(line => line.trim() !== '')
             .map(line => {
                 const values = this.parseCSVLine(line);
                 const entry = {};
+                
+                // Initialiser les permissions et membres par défaut
+                entry.permissions = [];
+                entry.members = [];
                 
                 headers.forEach((header, index) => {
                     const value = values[index]?.trim();
@@ -52,6 +60,9 @@ class GradeDataManager {
                     } else if (header === 'permissions') {
                         // Gérer les permissions séparées par des virgules ou points-virgules
                         entry[header] = value ? value.split(/[,;]/).map(p => p.trim()).filter(p => p) : [];
+                    } else if (header === 'members' || header === 'membres') {
+                        // Gérer les membres séparés par des virgules
+                        entry['members'] = value ? value.split(/[,;]/).map(m => m.trim()).filter(m => m) : [];
                     } else {
                         entry[header] = value;
                     }

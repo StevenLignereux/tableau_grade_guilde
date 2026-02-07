@@ -18,8 +18,8 @@ Le tableau des grades se compose des pages suivantes :
 ### 2.3 Détails des pages
 | Page | Module | Description fonctionnelle |
 |------|--------|---------------------------|
-| Page principale | Tableau des grades | Afficher la hiérarchie complète des grades avec nom, icône, description et permissions associées. Présenter les grades du plus haut au plus bas niveau avec une mise en page claire et visuelle. |
-| Page principale | Section détails grade | Au clic sur un grade, afficher une vue détaillée avec toutes les permissions spécifiques et explications détaillées des responsabilités. |
+| Page principale | Tableau des grades | Afficher la hiérarchie complète des grades avec nom, icône, description, permissions associées et membres détenant chaque grade. Présenter les grades du plus haut au plus bas niveau avec une mise en page claire et visuelle. |
+| Page principale | Section détails grade | Au clic sur un grade, afficher une vue détaillée avec toutes les permissions spécifiques, explications détaillées des responsabilités et liste complète des membres détenant ce grade. |
 | Page principale | Navigation responsive | Adapter l'affichage pour une lecture optimale sur desktop, tablette et mobile avec des cards empilées sur petits écrans. |
 | Page principale | Chargement données Google Sheets | Récupérer automatiquement les données depuis une Google Sheet publiée en format CSV, avec fallback sur fichier JSON local si indisponible. |
 
@@ -59,7 +59,7 @@ Approche **desktop-first** avec adaptation progressive. Sur mobile : cards verti
 ### 4.4 Instructions de modification des données
 **Pour les utilisateurs non-techniques :**
 1. Ouvrir la Google Sheet partagée
-2. Modifier les données directement dans les cellules (nom, description, permissions)
+2. Modifier les données directement dans les cellules (nom, description, permissions, membres)
 3. Aller dans Fichier → Partager → Publier sur le web
 4. Choisir format CSV et copier le lien
 5. Le tableau se met à jour automatiquement

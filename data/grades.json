@@ -1,10 +1,10 @@
 {
-  "guildName": "Nom de la Guilde",
+  "guildName": "La Flotte Exilée",
   "lastUpdated": "2024-02-07",
   "grades": [
     {
       "id": "leader",
-      "name": "Leader",
+      "name": "Empereur Sith",
       "level": 1,
       "icon": "crown",
       "color": "#FFD700",
@@ -14,11 +14,12 @@
         "Modifier les paramètres de guilde",
         "Inviter/exclure des membres",
         "Accès au coffre de guilde (Complet)"
-      ]
+      ],
+      "members": ["Darth Vador"]
     },
     {
       "id": "officer",
-      "name": "Officier",
+      "name": "Conseil Noir",
       "level": 2,
       "icon": "sword",
       "color": "#C0C0C0",
@@ -28,7 +29,8 @@
         "Gérer l'annonce de guilde",
         "Modérer le chat",
         "Organiser des raids"
-      ]
+      ],
+      "members": ["Darth Maul", "Darth Sidious", "Darth Tyranus"]
     },
     {
       "id": "veteran",
@@ -41,7 +43,8 @@
         "Accès prioritaire aux groupes",
         "Accès limité au coffre de guilde",
         "Proposer des événements"
-      ]
+      ],
+      "members": []
     },
     {
       "id": "member",
@@ -54,7 +57,8 @@
         "Participer au chat de guilde",
         "S'inscrire aux événements",
         "Déposer dans le coffre"
-      ]
+      ],
+      "members": []
     },
     {
       "id": "recruit",
@@ -66,7 +70,8 @@
       "permissions": [
         "Chat de guilde (Lecture seule)",
         "Période d'essai de 2 semaines"
-      ]
+      ],
+      "members": []
     }
   ]
 }

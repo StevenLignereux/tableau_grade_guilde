@@ -232,6 +232,48 @@ main {
     font-size: 1.05rem;
 }
 
+/* Members Section */
+.grade-members {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    /* Suppression du fond et de la bordure pour un look plus épuré "liste" */
+    background: transparent;
+    border: none;
+}
+
+.members-list-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.member-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.member-bullet {
+    color: var(--accent-secondary); /* Bullet rose néon */
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.member-name {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Permissions Section */
+.permissions-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: 0.05em;
+}
+
 .permissions-list {
     list-style: none;
     display: flex;
@@ -259,7 +301,7 @@ main {
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
     padding: var(--spacing-lg) 0;
-    margin-top: auto;
+    margin-top: var(--spacing-xxl); /* Force un espace au-dessus du footer */
     text-align: center;
     color: var(--text-secondary);
 }

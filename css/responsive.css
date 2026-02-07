@@ -14,6 +14,11 @@
         text-shadow: 0 2px 8px rgba(0,0,0,0.8); /* Renforce la lisibilité sur mobile */
     }
     
+    /* Force l'espacement sur mobile également */
+    main {
+        padding-bottom: var(--spacing-xxl);
+    }
+    
     .grade-card {
         flex-direction: column;
         align-items: flex-start;

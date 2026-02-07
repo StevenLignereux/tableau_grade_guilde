@@ -84,7 +84,8 @@ tableau_grade_guilde/
         "Gérer tous les grades",
         "Modifier les paramètres de guilde",
         "Inviter/exclure des membres"
-      ]
+      ],
+      "members": ["Empereur Sith"]
     },
     {
       "id": "officer",
@@ -97,7 +98,8 @@ tableau_grade_guilde/
         "Inviter des membres",
         "Gérer l'annonce de guilde",
         "Modérer le chat"
-      ]
+      ],
+      "members": ["Membre1", "Membre2", "Membre3"]
     }
   ]
 }
@@ -114,11 +116,13 @@ tableau_grade_guilde/
 | color | String | Code couleur hex | Non |
 | description | String | Description du grade (max 200 chars) | Oui |
 | permissions | String | Permissions séparées par des virgules | Oui |
+| members | String | Noms des membres séparés par des virgules | Oui |
 
 **Exemple de ligne CSV :**
 ```
-id,name,level,icon,color,description,permissions
-leader,Leader,1,crown.svg,#FFD700,Chef de guilde,"Gérer tous les grades,Modifier les paramètres de guilde,Inviter/exclure des membres"
+id,name,level,icon,color,description,permissions,members
+leader,Leader,1,crown.svg,#FFD700,Chef de guilde,"Gérer tous les grades,Modifier les paramètres de guilde,Inviter/exclure des membres","Empereur Sith"
+officer,Officier,2,sword.svg,#C0C0C0,Officier de guilde,"Inviter des membres,Gérer l'annonce de guilde,Modérer le chat","Membre1,Membre2,Membre3"
 ```
 
 ## 6. Architecture JavaScript

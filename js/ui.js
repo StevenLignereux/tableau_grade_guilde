@@ -28,9 +28,26 @@ class GradeUIRenderer {
         card.className = 'grade-card';
         card.style.borderLeft = `4px solid ${grade.color || 'var(--border-color)'}`;
 
-        const permissionsHtml = grade.permissions.map(perm => 
+        // Sécuriser l'accès aux permissions (tableau vide par défaut)
+        const permissions = Array.isArray(grade.permissions) ? grade.permissions : [];
+        const permissionsHtml = permissions.map(perm => 
             `<li class="permission-tag">${this.escapeHtml(perm)}</li>`
         ).join('');
+
+        // Gérer l'affichage des membres en liste verticale
+        const members = Array.isArray(grade.members) ? grade.members : [];
+        const membersHtml = members.length > 0 ? `
+            <div class="grade-members">
+                <div class="members-list-vertical">
+                    ${members.map(member => `
+                        <div class="member-item">
+                            <span class="member-bullet">•</span>
+                            <span class="member-name">${this.escapeHtml(member)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        ` : '';
 
         const iconName = grade.icon || 'shield';
 
@@ -44,9 +61,15 @@ class GradeUIRenderer {
                     <span class="grade-level">Niveau ${grade.level}</span>
                 </div>
                 <p class="grade-description">${this.escapeHtml(grade.description)}</p>
-                <ul class="permissions-list">
-                    ${permissionsHtml}
-                </ul>
+                
+                ${membersHtml}
+
+                <div class="permissions-section">
+                    <h3 class="permissions-title">Permissions :</h3>
+                    <ul class="permissions-list">
+                        ${permissionsHtml}
+                    </ul>
+                </div>
             </div>
         `;
 
