@@ -49,8 +49,7 @@ class GradeDataManager {
                 const values = this.parseCSVLine(line);
                 const entry = {};
                 
-                // Initialiser les permissions et membres par défaut
-                entry.permissions = [];
+                // Initialiser les membres par défaut
                 entry.members = [];
                 
                 headers.forEach((header, index) => {

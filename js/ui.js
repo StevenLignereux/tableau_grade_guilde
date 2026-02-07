@@ -25,14 +25,8 @@ class GradeUIRenderer {
 
     createGradeCard(grade) {
         const card = document.createElement('div');
-        card.className = 'grade-card';
+        card.className = 'grade-card accordion';
         card.style.borderLeft = `4px solid ${grade.color || 'var(--border-color)'}`;
-
-        // Sécuriser l'accès aux permissions (tableau vide par défaut)
-        const permissions = Array.isArray(grade.permissions) ? grade.permissions : [];
-        const permissionsHtml = permissions.map(perm => 
-            `<li class="permission-tag">${this.escapeHtml(perm)}</li>`
-        ).join('');
 
         // Gérer l'affichage des membres en liste verticale
         const members = Array.isArray(grade.members) ? grade.members : [];
@@ -47,31 +41,40 @@ class GradeUIRenderer {
                     `).join('')}
                 </div>
             </div>
-        ` : '';
+        ` : '<div class="no-members">Aucun membre assigné</div>';
 
         const iconName = grade.icon || 'shield';
 
         card.innerHTML = `
-            <div class="grade-icon" style="color: ${grade.color || 'inherit'}">
-                <i data-lucide="${iconName}"></i>
-            </div>
-            <div class="grade-content">
-                <div class="grade-header">
+            <div class="grade-header-wrapper">
+                <div class="grade-icon" style="color: ${grade.color || 'inherit'}">
+                    <i data-lucide="${iconName}"></i>
+                </div>
+                <div class="grade-header-content">
                     <h2 class="grade-name">${this.escapeHtml(grade.name)}</h2>
                     <span class="grade-level">Niveau ${grade.level}</span>
                 </div>
-                <p class="grade-description">${this.escapeHtml(grade.description)}</p>
-                
-                ${membersHtml}
-
-                <div class="permissions-section">
-                    <h3 class="permissions-title">Permissions :</h3>
-                    <ul class="permissions-list">
-                        ${permissionsHtml}
-                    </ul>
+                <div class="accordion-icon">
+                    <i data-lucide="chevron-down"></i>
                 </div>
             </div>
+            
+            <div class="grade-details">
+                <p class="grade-description">${this.escapeHtml(grade.description)}</p>
+                ${membersHtml}
+            </div>
         `;
+
+        // Ajouter l'événement de clic pour l'accordéon
+        card.addEventListener('click', () => {
+            card.classList.toggle('active');
+            const details = card.querySelector('.grade-details');
+            if (card.classList.contains('active')) {
+                details.style.maxHeight = details.scrollHeight + "px";
+            } else {
+                details.style.maxHeight = null;
+            }
+        });
 
         return card;
     }
