@@ -43,55 +43,36 @@ class GuildGradeApp {
             });
 
             try {
-                // Petit délai pour laisser le navigateur faire le rendu
-                await new Promise(r => setTimeout(r, 800));
+                // Attendre un peu que le DOM se mette à jour
+                await new Promise(resolve => setTimeout(resolve, 500));
 
-                if (typeof html2canvas === 'undefined') {
-                    throw new Error("La librairie html2canvas n'est pas chargée.");
-                }
-
-                const canvas = await html2canvas(container, {
-                    backgroundColor: '#0F001A',
-                    scale: 2, // Haute qualité
-                    useCORS: true,
-                    allowTaint: true, // Permet de capturer même si c'est un peu "sale" niveau sécurité
-                    onclone: (clonedDoc) => {
-                        // Astuce: on peut modifier le clone invisible avant la capture si besoin
-                        const clonedContainer = clonedDoc.getElementById('grades-container');
-                        clonedContainer.style.padding = "20px"; // Ajouter un peu de marge
+                // Utiliser dom-to-image pour une meilleure fidélité CSS
+                const dataUrl = await domtoimage.toPng(container, {
+                    bgcolor: '#0F001A', // Force le fond sombre
+                    style: {
+                        'transform': 'scale(1)', // Évite les bugs de zoom
+                        'transform-origin': 'top left'
                     }
                 });
 
-                // Téléchargement
+                // Créer le lien de téléchargement
                 const link = document.createElement('a');
                 link.download = 'preview-grades.png';
-                link.href = canvas.toDataURL('image/png');
+                link.href = dataUrl;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                
-                console.log("Image générée avec succès !");
+
+                alert("Image générée ! Sauvegardez-la dans 'assets/images/preview-grades.png' et commitez-la sur GitHub.");
             } catch (err) {
-                console.error("Erreur capture:", err);
-                alert("Erreur: " + err.message + "\nRegardez la console (F12) pour plus de détails.");
+                console.error('Erreur lors de la génération de la preview:', err);
+                alert('Erreur lors de la génération de l\'image: ' + err.message);
             } finally {
-                // 3. Restaurer l'état initial
+                // Restaurer l'état
                 cards.forEach(card => {
-                    // On ferme tout d'abord
                     card.classList.remove('active');
                     const details = card.querySelector('.grade-details');
                     details.style.maxHeight = null;
-                    details.style.display = ''; // Reset display
-                });
-
-                // On rouvre ceux qui étaient ouverts
-                initiallyActive.forEach(card => {
-                    // Retrouver la carte correspondante dans le DOM actuel (si pas détruit)
-                    // Comme on a pas touché au DOM structurellement, la référence 'card' est toujours bonne ? 
-                    // Non, 'initiallyActive' contient des éléments du DOM réel.
-                    card.classList.add('active');
-                    const details = card.querySelector('.grade-details');
-                    details.style.maxHeight = details.scrollHeight + "px";
                 });
             }
         });
