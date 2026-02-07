@@ -105,7 +105,7 @@ a:hover {
 /* Main Content */
 main {
     flex: 1;
-    padding-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xxl); /* Augmenté pour plus d'espace avant le footer */
 }
 
 /* Loading & Error */
@@ -152,6 +152,7 @@ main {
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Ombre plus profonde */
 }
 
 .grade-card::before {
@@ -161,19 +162,21 @@ main {
     left: 0;
     width: 4px;
     height: 100%;
-    background-color: var(--accent-color);
-    opacity: 0.5;
+    background: linear-gradient(to bottom, var(--accent-color), var(--accent-secondary)); /* Dégradé Cyan vers Pink */
+    opacity: 0.7;
 }
 
 .grade-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.15); /* Glow Cyan subtil */
     background-color: var(--bg-tertiary);
-    border-color: var(--accent-color);
+    border-color: var(--accent-tertiary);
 }
 
 .grade-card:hover::before {
     opacity: 1;
+    width: 6px; /* S'élargit un peu au hover */
+    transition: width 0.2s ease;
 }
 
 .grade-icon {
@@ -184,7 +187,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(75, 0, 130, 0.2); /* Fond violet indigo très léger */
     border: 1px solid var(--border-color);
 }
 
@@ -192,6 +195,7 @@ main {
     width: 32px;
     height: 32px;
     color: var(--accent-color);
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5)); /* Glow sur l'icône */
 }
 
 .grade-content {
@@ -214,12 +218,11 @@ main {
 
 .grade-level {
     font-size: 0.875rem;
-    color: var(--text-primary);
-    background: var(--accent-color);
+    color: var(--bg-primary);
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary)); /* Badge en dégradé */
     padding: 2px 10px;
     border-radius: 999px;
     font-weight: bold;
-    color: var(--bg-primary); /* Texte noir sur fond or */
 }
 
 .grade-description {
@@ -237,12 +240,18 @@ main {
 }
 
 .permission-tag {
-    background: rgba(226, 183, 20, 0.1); /* Utilise l'accent */
-    color: var(--accent-color);
+    background: rgba(138, 43, 226, 0.15); /* Violet vif très transparent */
+    color: var(--text-accent);
     padding: 4px 10px;
     border-radius: var(--radius-sm);
     font-size: 0.9rem;
-    border: 1px solid rgba(226, 183, 20, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.permission-tag:hover {
+    background: rgba(138, 43, 226, 0.25);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.1);
 }
 
 /* Footer */

@@ -7,21 +7,22 @@
 
 :root {
     /* 
-     * COULEURS
-     * Personnalisées pour correspondre à l'identité visuelle
+     * COULEURS - Palette "Espace Nuit & Néon"
+     * Basée sur l'analyse de l'image
      */
-    --bg-primary: #0b0e14;   /* Fond très sombre (presque noir) */
-    --bg-secondary: #151b26; /* Fond des cartes/sections */
-    --bg-tertiary: #1e2532;  /* Fond hover */
+    --bg-primary: #0F001A;   /* Noir / violet-noir très foncé (Fond absolu) */
+    --bg-secondary: #1A0526; /* Fond des cartes (Indigo très sombre pour lisibilité) */
+    --bg-tertiary: #2D0A40;  /* Fond hover */
     
-    --text-primary: #ffffff; /* Texte blanc pur */
-    --text-secondary: #9ca3af; /* Gris clair pour sous-titres */
-    --text-accent: #e2b714;    /* Or/Jaune pour les accents (comme les titres) */
+    --text-primary: #FFFFFF; /* Blanc pur */
+    --text-secondary: #E0D0F5; /* Violet très pâle pour les descriptions */
+    --text-accent: #00FFFF;    /* Cyan électrique pour les liens/accents */
     
-    --accent-color: #e2b714; /* Couleur principale (Or) */
-    --accent-hover: #f5d048; /* Couleur au survol */
+    --accent-color: #00FFFF;   /* Cyan électrique (Dominante Tech) */
+    --accent-secondary: #FF69B4; /* Hot pink / Magenta néon */
+    --accent-tertiary: #8A2BE2; /* Violet vif */
     
-    --border-color: #2a3441; /* Bordures subtiles */
+    --border-color: #4B0082;   /* Violet indigo profond */
     
     /* ESPACEMENT */
     --spacing-xs: 0.25rem;
@@ -29,9 +30,9 @@
     --spacing-md: 1rem;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
+    --spacing-xxl: 5rem; /* Nouvel espacement pour le footer */
     
     /* TYPOGRAPHIE */
-    /* Utilisation de la font personnalisée */
     --font-main: 'GuildFont', 'Segoe UI', system-ui, sans-serif;
     
     /* BORDURES */
