@@ -1,0 +1,72 @@
+{
+  "guildName": "Nom de la Guilde",
+  "lastUpdated": "2024-02-07",
+  "grades": [
+    {
+      "id": "leader",
+      "name": "Leader",
+      "level": 1,
+      "icon": "crown",
+      "color": "#FFD700",
+      "description": "Le maître de guilde. Responsable de la direction stratégique et de la gestion globale.",
+      "permissions": [
+        "Gérer tous les grades",
+        "Modifier les paramètres de guilde",
+        "Inviter/exclure des membres",
+        "Accès au coffre de guilde (Complet)"
+      ]
+    },
+    {
+      "id": "officer",
+      "name": "Officier",
+      "level": 2,
+      "icon": "sword",
+      "color": "#C0C0C0",
+      "description": "Bras droit du leader. Gère le recrutement et l'organisation des événements.",
+      "permissions": [
+        "Inviter des membres",
+        "Gérer l'annonce de guilde",
+        "Modérer le chat",
+        "Organiser des raids"
+      ]
+    },
+    {
+      "id": "veteran",
+      "name": "Vétéran",
+      "level": 3,
+      "icon": "shield",
+      "color": "#CD7F32",
+      "description": "Membre expérimenté et fiable. Aide les nouveaux arrivants.",
+      "permissions": [
+        "Accès prioritaire aux groupes",
+        "Accès limité au coffre de guilde",
+        "Proposer des événements"
+      ]
+    },
+    {
+      "id": "member",
+      "name": "Membre",
+      "level": 4,
+      "icon": "user",
+      "color": "#94a3b8",
+      "description": "Membre actif de la guilde.",
+      "permissions": [
+        "Participer au chat de guilde",
+        "S'inscrire aux événements",
+        "Déposer dans le coffre"
+      ]
+    },
+    {
+      "id": "recruit",
+      "name": "Recrue",
+      "level": 5,
+      "icon": "user-plus",
+      "color": "#64748b",
+      "description": "Nouveau membre en période d'essai.",
+      "permissions": [
+        "Chat de guilde (Lecture seule)",
+        "Période d'essai de 2 semaines"
+      ]
+    }
+  ]
+}

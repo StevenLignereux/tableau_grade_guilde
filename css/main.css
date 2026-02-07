@@ -1,0 +1,211 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    width: 100%;
+}
+
+/* Header */
+.main-header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.guild-logo {
+    width: 48px;
+    height: 48px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-primary);
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding-bottom: var(--spacing-xl);
+}
+
+/* Loading & Error */
+.loading, .error-message {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-xl) auto;
+    max-width: 400px;
+}
+
+.loading .spin {
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-sm);
+    color: var(--accent-color);
+}
+
+.error-message {
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Grades Grid/Table */
+.grades-grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+/* Grade Card Styles */
+.grade-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-lg);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.grade-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: var(--bg-tertiary);
+}
+
+.grade-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.grade-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.grade-content {
+    flex: 1;
+}
+
+.grade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.grade-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.grade-level {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.grade-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+}
+
+.permissions-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.permission-tag {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--text-accent);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-lg) 0;
+    margin-top: auto;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+/* Keyframes */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

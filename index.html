@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades & Hiérarchie - Guilde</title>
+    
+    <!-- Open Graph / Discord Embed Metadata -->
+    <meta property="og:title" content="Grades & Hiérarchie - Guilde">
+    <meta property="og:description" content="Découvrez la hiérarchie complète de notre guilde, les rôles et les permissions associées.">
+    <meta property="og:image" content="./assets/images/preview-grades.png">
+    <meta property="og:url" content="https://github.com/votre-user/tableau_grade_guilde">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-area">
+                <!-- Placeholder pour logo -->
+                <div class="guild-logo">
+                    <i data-lucide="shield"></i>
+                </div>
+                <h1>Grades de Guilde</h1>
+            </div>
+            <p class="subtitle">Hiérarchie et Permissions</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="loading-indicator" class="loading">
+            <i data-lucide="loader-2" class="spin"></i>
+            <p>Chargement des grades...</p>
+        </div>
+
+        <div id="error-container" class="error-message hidden"></div>
+
+        <!-- Le tableau des grades sera injecté ici par JS -->
+        <div id="grades-container" class="grades-grid"></div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Guilde. Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="#" target="_blank">Discord</a>
+                <a href="https://github.com/votre-user/tableau_grade_guilde" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
