@@ -27,49 +27,71 @@ class GuildGradeApp {
         if (!btn) return;
 
         btn.addEventListener('click', async () => {
+            console.log("Bouton cliqué, début de la génération...");
             const container = document.getElementById('grades-container');
-            const originalStyle = container.style.cssText;
             
-            // Ouvrir tous les accordéons pour la photo
+            // 1. Sauvegarder l'état actuel (quels sont ouverts ?)
+            const initiallyActive = Array.from(container.querySelectorAll('.grade-card.active'));
+
+            // 2. Tout ouvrir pour la photo
             const cards = container.querySelectorAll('.grade-card');
             cards.forEach(card => {
                 card.classList.add('active');
                 const details = card.querySelector('.grade-details');
-                details.style.maxHeight = 'none';
+                details.style.maxHeight = 'none'; // Force l'affichage complet sans animation
+                details.style.display = 'block'; // Force l'affichage
             });
 
             try {
-                // Attendre un peu que le DOM se mette à jour
-                await new Promise(resolve => setTimeout(resolve, 500));
+                // Petit délai pour laisser le navigateur faire le rendu
+                await new Promise(r => setTimeout(r, 800));
 
-                // Créer le canvas
+                if (typeof html2canvas === 'undefined') {
+                    throw new Error("La librairie html2canvas n'est pas chargée.");
+                }
+
                 const canvas = await html2canvas(container, {
-                    backgroundColor: '#0F001A', // Couleur de fond du thème
-                    scale: 2, // Meilleure qualité
-                    useCORS: true, // Important pour charger les images externes (Google Sheets / Icônes)
-                    logging: true // Pour le debug
+                    backgroundColor: '#0F001A',
+                    scale: 2, // Haute qualité
+                    useCORS: true,
+                    allowTaint: true, // Permet de capturer même si c'est un peu "sale" niveau sécurité
+                    onclone: (clonedDoc) => {
+                        // Astuce: on peut modifier le clone invisible avant la capture si besoin
+                        const clonedContainer = clonedDoc.getElementById('grades-container');
+                        clonedContainer.style.padding = "20px"; // Ajouter un peu de marge
+                    }
                 });
 
-                // Créer le lien de téléchargement
+                // Téléchargement
                 const link = document.createElement('a');
                 link.download = 'preview-grades.png';
                 link.href = canvas.toDataURL('image/png');
-                document.body.appendChild(link); // Requis pour Firefox parfois
+                document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-
-                alert("Image générée ! Sauvegardez-la dans 'assets/images/preview-grades.png' et commitez-la sur GitHub.");
+                
+                console.log("Image générée avec succès !");
             } catch (err) {
-                console.error('Erreur lors de la génération de la preview:', err);
-                alert('Erreur lors de la génération de l\'image: ' + err.message);
+                console.error("Erreur capture:", err);
+                alert("Erreur: " + err.message + "\nRegardez la console (F12) pour plus de détails.");
             } finally {
-                // Recharger la page pour remettre l'état initial
-                // window.location.reload(); 
-                // On peut juste refermer les cartes au lieu de reload violent
+                // 3. Restaurer l'état initial
                 cards.forEach(card => {
+                    // On ferme tout d'abord
                     card.classList.remove('active');
                     const details = card.querySelector('.grade-details');
                     details.style.maxHeight = null;
+                    details.style.display = ''; // Reset display
+                });
+
+                // On rouvre ceux qui étaient ouverts
+                initiallyActive.forEach(card => {
+                    // Retrouver la carte correspondante dans le DOM actuel (si pas détruit)
+                    // Comme on a pas touché au DOM structurellement, la référence 'card' est toujours bonne ? 
+                    // Non, 'initiallyActive' contient des éléments du DOM réel.
+                    card.classList.add('active');
+                    const details = card.querySelector('.grade-details');
+                    details.style.maxHeight = details.scrollHeight + "px";
                 });
             }
         });
