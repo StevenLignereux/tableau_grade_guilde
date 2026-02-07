@@ -30,15 +30,43 @@ a:hover {
     margin: 0 auto;
     padding: 0 var(--spacing-md);
     width: 100%;
+    position: relative; /* Pour le z-index si besoin */
+    z-index: 2;
+}
+
+/* Hero Banner */
+.hero-banner {
+    width: 100%;
+    height: 300px; /* Ajustable selon l'image */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -60px; /* Chevauchement avec le header */
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 100%);
 }
 
 /* Header */
 .main-header {
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
+    background-color: transparent; /* Transparent pour voir le dégradé */
     padding: var(--spacing-xl) 0;
     text-align: center;
     margin-bottom: var(--spacing-xl);
+    position: relative;
+    z-index: 2;
 }
 
 .logo-area {
@@ -61,14 +89,17 @@ a:hover {
 }
 
 .main-header h1 {
-    font-size: 2.5rem;
+    font-size: 3rem; /* Plus grand avec la nouvelle font */
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--accent-color); /* Utilise la couleur d'accent */
+    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
 }
 
 .subtitle {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 /* Main Content */
@@ -85,6 +116,7 @@ main {
     border-radius: var(--radius-md);
     margin: var(--spacing-xl) auto;
     max-width: 400px;
+    border: 1px solid var(--border-color);
 }
 
 .loading .spin {
@@ -95,7 +127,8 @@ main {
 
 .error-message {
     color: #ef4444;
-    border: 1px solid #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.1);
 }
 
 .hidden {
@@ -116,13 +149,31 @@ main {
     padding: var(--spacing-lg);
     display: flex;
     gap: var(--spacing-lg);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.grade-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--accent-color);
+    opacity: 0.5;
 }
 
 .grade-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     background-color: var(--bg-tertiary);
+    border-color: var(--accent-color);
+}
+
+.grade-card:hover::before {
+    opacity: 1;
 }
 
 .grade-icon {
@@ -134,11 +185,13 @@ main {
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
 }
 
 .grade-icon svg {
     width: 32px;
     height: 32px;
+    color: var(--accent-color);
 }
 
 .grade-content {
@@ -153,23 +206,27 @@ main {
 }
 
 .grade-name {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
+    font-family: var(--font-main);
 }
 
 .grade-level {
     font-size: 0.875rem;
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2px 8px;
+    color: var(--text-primary);
+    background: var(--accent-color);
+    padding: 2px 10px;
     border-radius: 999px;
+    font-weight: bold;
+    color: var(--bg-primary); /* Texte noir sur fond or */
 }
 
 .grade-description {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
     font-style: italic;
+    font-size: 1.05rem;
 }
 
 .permissions-list {
@@ -180,11 +237,12 @@ main {
 }
 
 .permission-tag {
-    background: rgba(56, 189, 248, 0.1);
-    color: var(--text-accent);
-    padding: 4px 8px;
+    background: rgba(226, 183, 20, 0.1); /* Utilise l'accent */
+    color: var(--accent-color);
+    padding: 4px 10px;
     border-radius: var(--radius-sm);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(226, 183, 20, 0.2);
 }
 
 /* Footer */

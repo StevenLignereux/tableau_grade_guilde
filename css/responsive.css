@@ -1,12 +1,24 @@
 @media (max-width: 768px) {
+    .hero-banner {
+        height: 180px;
+        margin-bottom: -40px;
+    }
+
+    .main-header {
+        padding: var(--spacing-lg) 0;
+        margin-bottom: var(--spacing-lg);
+    }
+
     .main-header h1 {
-        font-size: 1.75rem;
+        font-size: 2rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.8); /* Renforce la lisibilité sur mobile */
     }
     
     .grade-card {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-md);
+        padding: var(--spacing-md);
     }
     
     .grade-icon {

@@ -1,18 +1,27 @@
+@font-face {
+    font-family: 'GuildFont';
+    src: url('../assets/fonts/default.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     /* 
      * COULEURS
-     * À mettre à jour selon l'image welcome.png de la guilde
+     * Personnalisées pour correspondre à l'identité visuelle
      */
-    --bg-primary: #0f172a;   /* Fond principal (Dark Slate) */
-    --bg-secondary: #1e293b; /* Fond des cartes */
-    --bg-tertiary: #334155;  /* Fond hover */
+    --bg-primary: #0b0e14;   /* Fond très sombre (presque noir) */
+    --bg-secondary: #151b26; /* Fond des cartes/sections */
+    --bg-tertiary: #1e2532;  /* Fond hover */
     
-    --text-primary: #f8fafc; /* Texte principal */
-    --text-secondary: #94a3b8; /* Texte secondaire */
-    --text-accent: #38bdf8;    /* Texte accentué */
+    --text-primary: #ffffff; /* Texte blanc pur */
+    --text-secondary: #9ca3af; /* Gris clair pour sous-titres */
+    --text-accent: #e2b714;    /* Or/Jaune pour les accents (comme les titres) */
     
-    --accent-color: #eab308; /* Or/Jaune pour les éléments importants */
-    --border-color: #334155;
+    --accent-color: #e2b714; /* Couleur principale (Or) */
+    --accent-hover: #f5d048; /* Couleur au survol */
+    
+    --border-color: #2a3441; /* Bordures subtiles */
     
     /* ESPACEMENT */
     --spacing-xs: 0.25rem;
@@ -22,7 +31,8 @@
     --spacing-xl: 2rem;
     
     /* TYPOGRAPHIE */
-    --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    /* Utilisation de la font personnalisée */
+    --font-main: 'GuildFont', 'Segoe UI', system-ui, sans-serif;
     
     /* BORDURES */
     --radius-sm: 4px;
